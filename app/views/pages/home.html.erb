@@ -1,0 +1,17 @@
+<div class="container full-screen-h d-flex justify-content-center align-items-center text-center mb-5">
+    <div class="row mb-5">
+        <div class="col-12 h1">
+            Quotes Editor
+        </div>
+        <div class="col-12 h5 fw-normal">
+            A SPA based quotes editor developed using Turbo and Action Cable
+        </div>
+        <div class="col-12 mb-5">
+            <% if user_signed_in? %>
+                <%= link_to 'Quotes Editor', quotes_path, class:'btn btn-outline-success' %>
+            <% else %>
+                <%= link_to 'Sign in', new_user_session_path, class:'btn btn-outline-dark' %>
+            <% end %>
+        </div>
+    </div>
+</div>

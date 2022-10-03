@@ -1,0 +1,15 @@
+<%= turbo_frame_tag dom_id(quote) do %>
+  <p class="mb-0">
+    <strong>Name:</strong>
+    <%= quote.name %>
+  </p>
+  <p class='d-inline-block'>
+    <%= link_to "Show", quote_path(quote), class:'btn btn-info', data: { turbo_frame:'_top' }%>
+  </p>
+  <p class='d-inline-block'>
+    <%= link_to "Edit", edit_quote_path(quote), class:'btn btn-outline-info'%>
+  </p>
+  <p class='d-inline-block'>
+    <%= button_to("Delete", quote, class:'btn btn-outline-danger', method: :delete)%>
+  </p>
+<% end %>

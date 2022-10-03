@@ -1,0 +1,30 @@
+<%= form_with model:quote, 
+              html: { autocomplete:"off" },
+              class:'mb-3 ms-2' do |form| %>
+  <div class="row border border-primary rounded-3 pb-3" 
+        id="new_quote_form">
+    <div class="col-12 d-flex justify-content-end small p-0">
+      <%= link_to '', 
+          quotes_path, 
+          type:'button', 
+          class:'btn-close pt-2 pe-2',
+          aria: { label: 'Close' } %>
+    </div>
+    <div class="col-12 d-grid d-flex justify-content-center gap-3">
+      <div class="">
+        <%= form.text_field :name, 
+            placeholder:'Write Quote...', 
+            class:'form-control',
+            aria: { describedby:"quoteValidation" } %>
+        <% if quote.errors.any? %>
+        <div class="invalid-feedback d-block" id="quoteValidation" role="alert">
+          <%= quote.errors[:name].first %>
+        </div>
+        <% end %>
+      </div>  
+      <div class="">
+        <%= form.submit class:'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>

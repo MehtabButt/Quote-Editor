@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="container">
+  <div class="row mb-4">
+    <p class="col-3 h2">Quotes</p>
+    <div class="col-auto">
+      <%= button_to "Add Quote", 
+          new_quote_path,
+          method: :get, 
+          class:'btn btn-primary btn-sm mt-1',
+          data: { turbo_frame:'new_quote' } %>
+    </div>
+  </div>
+
+  <%= turbo_stream_from current_company, 'quotes' %>
+  <%= turbo_frame_tag "new_quote" %>
+
+  <%= turbo_frame_tag 'quotes' do %>
+    <% @quotes.each do |quote| %>
+      <%= render quote %>
+    <% end %>
+  <% end %>
+</div>
