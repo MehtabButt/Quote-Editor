@@ -3,7 +3,7 @@ class QuotesController < ApplicationController
 
   # GET /quotes or /quotes.json
   def index
-    @quotes = Quote.all
+    @quotes = current_company.quotes 
   end
 
   # GET /quotes/1 or /quotes/1.json
@@ -25,9 +25,9 @@ class QuotesController < ApplicationController
      
     respond_to do |format|
       if @quote.save
-        format.html { redirect_to quote_url(@quote), notice: "Quote was successfully created." }
+        format.html { redirect_to quote_url(@quote), success: "Quote was successfully created." }
         format.json { render :show, status: :created, location: @quote }
-        format.turbo_stream 
+        format.turbo_stream { flash.now[:success] = 'Quote was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
@@ -39,8 +39,9 @@ class QuotesController < ApplicationController
   def update
     respond_to do |format|
       if @quote.update(quote_params)
-        format.html { redirect_to quote_url(@quote), notice: "Quote was successfully updated." }
+        format.html { redirect_to quote_url(@quote), warning: "Quote was successfully updated." }
         format.json { render :show, status: :ok, location: @quote }
+        format.turbo_stream { flash.now[:warning] = 'Quote was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
@@ -53,9 +54,9 @@ class QuotesController < ApplicationController
     @quote.destroy
 
     respond_to do |format|
-      format.html { redirect_to quotes_url, notice: "Quote was successfully destroyed." }
+      format.html { redirect_to quotes_url, danger: "Quote was successfully destroyed." }
       format.json { head :no_content }
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@quote) }
+      format.turbo_stream { flash.now[:danger] = 'Quote was successfully destroyed.' }
     end
   end
 

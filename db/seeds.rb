@@ -6,7 +6,16 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-quotes = ['first quote', 'second quote']
-for quote in quotes do 
-    Quote.create(name:quote)
+# quotes = ['first quote', 'second quote']
+# for quote in quotes do 
+#     Quote.create(name:quote)
+# end
+
+users = [
+    {email: 'test1@gmail.com', password:'12345678', company_id:1},
+    {email: 'test2@gmail.com', password:'12345678', company_id:2}    
+]
+
+users.each do |user|
+    User.create!(email:user[:email], password:user[:password], company_id:user[:company_id])
 end

@@ -1,0 +1,11 @@
+<div class="empty-state row">
+    <div class="col-4 text-center">
+        <p>
+            you don't have quotes yet!
+        </p>
+        <%= link_to '+ Add Quote', 
+            new_quote_path, 
+            class:'btn btn-primary',
+            data: { turbo_frame: 'new_quote' } %>
+    </div>
+</div>

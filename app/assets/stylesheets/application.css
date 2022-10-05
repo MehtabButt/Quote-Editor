@@ -25,3 +25,7 @@
  .full-screen-h {
   height: 100vh;
  }
+
+ .empty-state:not(:only-child) {
+  display: none;
+ }
