@@ -11,10 +11,21 @@
 #     Quote.create(name:quote)
 # end
 
-users = [
-    {email: 'test1@gmail.com', password:'12345678', company_id:1},
-    {email: 'test2@gmail.com', password:'12345678', company_id:2}    
+companies = [
+    {name:'SSI'},
+    {name:'EMPG'}
 ]
+
+users = [
+    {email:'mehtab@gmail.com', password:'mehtabgmail', company_id:1},
+    {email:'fali@gmail.com', password:'faligmail', company_id:1},
+    {email:'adeel@gmail.com', password:'adeelgmail', company_id:2},
+    {email:'shehroz@gmail.com', password:'shehrozgmail', company_id:2}
+]
+
+companies.each do |company| 
+    Company.create!(name:company[:name])
+end
 
 users.each do |user|
     User.create!(email:user[:email], password:user[:password], company_id:user[:company_id])

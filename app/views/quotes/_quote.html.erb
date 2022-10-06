@@ -1,11 +1,14 @@
 <%= turbo_frame_tag dom_id(quote) do %>
+<% begin %>
+  <% if warden.user.name %>
+    <div>Warden: <%= warden.user.name %></div>
+  <% end %>
 
-<% if warden.user.name %>
-  <%= warden.user.name %>
-<% end %>
-
-<% if current_user %>
-  <%= current_user %>
+  <% if current_user.name %>
+    <div>Current User: <%= current_user.name %></div>
+  <% end %>
+<% rescue Exception => e %>
+  <%= e.message %>
 <% end %>
 
   <p class="mb-0">
